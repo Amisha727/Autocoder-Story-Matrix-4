@@ -1,22 +1,22 @@
 "use client";
+import { Environment } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { Suspense } from "react";
 
-const ItemLayout = ({ children, className }) => {
+const RenderModel = ({ children, className }) => {
   return (
-    <motion.div
-      initial={{ scale: 0 }}
-      whileInView={{ scale: 1 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className={clsx(
-        "custom-bg p-6 sm:p-8 rounded-xl flex items-center justify-center space-y-8",
-        className
-      )}
+    <Canvas
+      className={clsx("w-screen h-screen -z-10 relative", className)}
+      shadows={false}
+      dpr={[1, 2]} // Adjust for device pixel ratio
     >
-      {children}
-    </motion.div>
+      <Suspense fallback={null}>
+        {children}
+      </Suspense>
+      <Environment preset="dawn" /> {/* Ensure "dawn" is a valid preset */}
+    </Canvas>
   );
 };
 
-export default ItemLayout;
+export default RenderModel;
