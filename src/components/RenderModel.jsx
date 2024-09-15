@@ -4,17 +4,17 @@ import { Canvas } from "@react-three/fiber";
 import clsx from "clsx";
 import { Suspense } from "react";
 
-
 const RenderModel = ({ children, className }) => {
   return (
     <Canvas
       className={clsx("w-screen h-screen -z-10 relative", className)}
       shadows={false}
-      dpr={[1, 2]}
-      // dpr is the device pixel ratio. Here we are setting it to 1 and 2 for retina displays to prevent blurriness in the model rendering on high resolution screens.
+      dpr={[1, 2]} // Adjust device pixel ratio for high-resolution displays
     >
-      <Suspense fallback={null}>{children}</Suspense>
-      <Environment preset="dawn" />
+      <Suspense fallback={<div>Loading...</div>}>
+        {children}
+      </Suspense>
+      <Environment preset="dawn" /> {/* Ensure this preset is valid */}
     </Canvas>
   );
 };
