@@ -11,7 +11,7 @@ const RenderModel = ({ children, className }) => {
       shadows={false}
       dpr={[1, 2]} // Adjust device pixel ratio for high-resolution displays
     >
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="flex items-center justify-center w-full h-full text-white">Loading model...</div>}>
         {children}
       </Suspense>
       <Environment preset="dawn" /> {/* Ensure this preset is valid */}
